@@ -51,6 +51,14 @@ while True:
                 print('')
         else:
             print('Não há nenhuma venda')
+
+    elif opcao == '3':
+        if vendas != {}:
+            acima_cem = [chave for chave, valor in vendas.items() if valor['Total'] > 100]
+            for venda in acima_cem:
+                print(venda)
+        else:
+            print('Não há nenhuma venda')
     
     elif opcao == '5':
         break
