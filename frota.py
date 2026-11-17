@@ -28,7 +28,15 @@ economicos_disponiveis = [veiculo["modelo"] for veiculo in frota if veiculo["dis
 
 
 diarias_promocionais = [veiculo['diaria'] * 0.9 if veiculo['categoria'] == 'Economico' else veiculo['diaria'] for veiculo in frota]
-'''
+
 valores_disponiveis = [veiculo['diaria'] * 1.15 if veiculo['diaria'] >= 200 else veiculo['diaria'] for veiculo in frota if veiculo['disponivel']]
 
-print(valores_disponiveis)
+
+placa_modelo = {veiculo['placa']: veiculo['modelo'] for veiculo in frota}
+
+diarias_com_seguro = {veiculo['placa']: veiculo['diaria'] * 1.1 for veiculo in frota if veiculo['disponivel'] }
+
+frota_premium = {chave: diarias_com_seguro[chave] for chave in diarias_com_seguro if diarias_com_seguro[chave] > 100}
+
+classificacao_frota = {chave: 'Luxo' if placa_modelo[chave] == 'Corolla' or placa_modelo[chave] == 'Compass' else 'Popular' for chave in placa_modelo if chave != 'JKL3456'}
+'''
